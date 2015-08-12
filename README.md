@@ -14,5 +14,5 @@ Autodesk Maya Mocap Retargeting python toolset for riggers and animators.
   3- shiboken plugin should be installed
   
   
-# Please inform me if you see any bugs or have any suggestions.
+# Bugs/Suggestions/Comments:
 mail2: ehsankiani(dot)tech(at)gmail(dot)com
