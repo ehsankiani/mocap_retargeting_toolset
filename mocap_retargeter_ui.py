@@ -20,19 +20,26 @@ class mcr_ui(QtGui.QWidget):
         
     ##
     def create_widgets(self):
+        ## main_tabs
         self.main_tabs = QtGui.QTabWidget()
-        
         self.parse_tab = QtGui.QWidget()
         self.cleanup_tab = QtGui.QWidget()
         self.retarget_tab = QtGui.QWidget()
         self.control_graphs_tab = QtGui.QWidget()
         
+        ## parse_tab
         self.get_path_line_edit = QtGui.QLineEdit("Enter mocap file path ...")
-        self.get_path_push_button = QtGui.QPushButton("Get File")
+        self.get_path_push_button = QtGui.QPushButton("Open File")
+        self.clear_push_button = QtGui.QPushButton("Clear")
+        self.parse_push_button = QtGui.QPushButton("Parse")
+        self.parse_push_button.setStyleSheet("background-color: red")
+        self.parser_group_box = QtGui.QGroupBox("Mocap File")        
+        self.parser_tree = QtGui.QTreeView()
+        self.parser_tree.setMinimumHeight(350)
         
+        ## retarget_tab
         self.mocap_group_box = QtGui.QGroupBox("Mocap Objects")
         self.mocap_get_scene_push_button = QtGui.QPushButton("Load Selected")
-        self.mocap_get_path_push_button = QtGui.QPushButton("Load Path")
         self.mocap_clear_push_button = QtGui.QPushButton("Clear")
         self.mocap_tree = QtGui.QTreeView()
         self.mocap_tree.setMinimumHeight(350)
@@ -49,10 +56,24 @@ class mcr_ui(QtGui.QWidget):
     
     ##    
     def create_layouts(self):
-        path_layout = QtGui.QHBoxLayout()                
+        ## parse_tab        
+        path_layout = QtGui.QHBoxLayout()
         path_layout.addWidget(self.get_path_line_edit)
         path_layout.addWidget(self.get_path_push_button)
+        path_layout.addWidget(self.clear_push_button)
+        path_layout.addWidget(self.parse_push_button)
         
+        parser_layout = QtGui.QVBoxLayout()
+        parser_layout.addWidget(self.parser_tree)  
+        parser_layout.addLayout(path_layout)
+        
+        self.parser_group_box.setLayout(parser_layout)
+        
+        self.parser_main_layout = QtGui.QVBoxLayout()
+        self.parser_main_layout.addWidget(self.parser_group_box)
+        self.parse_tab.setLayout(self.parser_main_layout)
+        
+        ## retarget_tab
         match_layout = QtGui.QVBoxLayout()
         match_layout.addWidget(self.match_push_button)
         
@@ -64,7 +85,6 @@ class mcr_ui(QtGui.QWidget):
         group_layout.setStretch(2, 2)
         
         mocap_layout = QtGui.QVBoxLayout()
-        mocap_layout.addWidget(self.mocap_get_path_push_button)
         mocap_layout.addWidget(self.mocap_get_scene_push_button)
         mocap_layout.addWidget(self.mocap_tree)
         mocap_layout.addWidget(self.mocap_clear_push_button)
@@ -76,18 +96,18 @@ class mcr_ui(QtGui.QWidget):
         target_layout.addWidget(self.target_clear_push_button)
         self.target_group_box.setLayout(target_layout)
         
-        retarget_main_layout = QtGui.QVBoxLayout()
-        retarget_main_layout.addLayout(path_layout)
-        retarget_main_layout.addLayout(group_layout)
-        retarget_main_layout.addWidget(self.match_retarget_push_button)
+        self.retarget_main_layout = QtGui.QVBoxLayout()
+        self.retarget_main_layout.addLayout(group_layout)
+        self.retarget_main_layout.addWidget(self.match_retarget_push_button)
         
-        self.retarget_tab.setLayout(retarget_main_layout)
+        self.retarget_tab.setLayout(self.retarget_main_layout)
         
+        ## main_layout        
         self.main_tabs.addTab(self.parse_tab, "Parser")
         self.main_tabs.addTab(self.cleanup_tab, "Cleanup")
         self.main_tabs.addTab(self.retarget_tab, "Retargeting")
         self.main_tabs.addTab(self.control_graphs_tab, "Key Graphs")
-        
+                
         main_layout = QtGui.QVBoxLayout()
         main_layout.addWidget(self.main_tabs)
                 
