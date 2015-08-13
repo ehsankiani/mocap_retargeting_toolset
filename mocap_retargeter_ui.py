@@ -28,6 +28,12 @@ class mcr_ui(QtGui.QWidget):
         self.mocap_get_path_push_button = QtGui.QPushButton("Load Path")
         self.mocap_clear_push_button = QtGui.QPushButton("Clear")
         self.mocap_tree = QtGui.QTreeView()
+        self.mocap_tree.setMinimumHeight(400)
+        
+        self.match_push_button = QtGui.QPushButton("<<")
+        self.match_push_button.setMinimumHeight(150)
+        self.match_retarget_push_button = QtGui.QPushButton("RETARGET")
+        self.match_retarget_push_button.setMinimumHeight(50)
         
         self.target_group_box = QtGui.QGroupBox("Target Objects")
         self.target_get_scene_push_button = QtGui.QPushButton("Load Selected")
@@ -42,12 +48,35 @@ class mcr_ui(QtGui.QWidget):
         path_layout.addWidget(self.get_path_line_edit)
         path_layout.addWidget(self.get_path_push_button)
         
+        match_layout = QtGui.QVBoxLayout()
+        match_layout.addWidget(self.match_push_button)
+        
         group_layout = QtGui.QHBoxLayout()
         group_layout.addWidget(self.mocap_group_box)
+        group_layout.addLayout(match_layout)
         group_layout.addWidget(self.target_group_box)
+        group_layout.setStretch(0, 2)
+        group_layout.setStretch(2, 2)
+        
+        
+        mocap_layout = QtGui.QVBoxLayout()
+        mocap_layout.addWidget(self.mocap_get_path_push_button)
+        mocap_layout.addWidget(self.mocap_get_scene_push_button)
+        mocap_layout.addWidget(self.mocap_tree)
+        mocap_layout.addWidget(self.mocap_clear_push_button)
+        
+        self.mocap_group_box.setLayout(mocap_layout)
+        
+        target_layout = QtGui.QVBoxLayout()
+        target_layout.addWidget(self.target_get_scene_push_button)
+        target_layout.addWidget(self.target_tree)
+        target_layout.addWidget(self.target_clear_push_button)
+        
+        self.target_group_box.setLayout(target_layout)
         
         main_layout.addLayout(path_layout)
         main_layout.addLayout(group_layout)
+        main_layout.addWidget(self.match_retarget_push_button)
         
         main_layout.addStretch()
         
@@ -70,6 +99,3 @@ if __name__ == "__main__":
     test_ui.draw()
     test_ui.show()
         
-        
-        
- 
