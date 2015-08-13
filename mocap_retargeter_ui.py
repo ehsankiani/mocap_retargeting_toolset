@@ -16,7 +16,7 @@ class mcr_ui(QtGui.QWidget):
         super(mcr_ui, self).__init__(parent)
         self.setWindowTitle("Mocap Retargeting")
         self.setWindowFlags(QtCore.Qt.Window)
-        self.resize(QtCore.QSize(500, 5))
+        self.resize(QtCore.QSize(400, 5))
         
     ##
     def create_widgets(self):
@@ -28,12 +28,13 @@ class mcr_ui(QtGui.QWidget):
         self.mocap_get_path_push_button = QtGui.QPushButton("Load Path")
         self.mocap_clear_push_button = QtGui.QPushButton("Clear")
         self.mocap_tree = QtGui.QTreeView()
-        self.mocap_tree.setMinimumHeight(400)
+        self.mocap_tree.setMinimumHeight(350)
         
-        self.match_push_button = QtGui.QPushButton("<<")
-        self.match_push_button.setMinimumHeight(150)
-        self.match_retarget_push_button = QtGui.QPushButton("RETARGET")
-        self.match_retarget_push_button.setMinimumHeight(50)
+        self.match_push_button = QtGui.QPushButton("<")
+        self.match_push_button.setMinimumHeight(450)
+        self.match_retarget_push_button = QtGui.QPushButton("Re-Target")
+        self.match_retarget_push_button.setStyleSheet("background-color: red")
+        #self.match_retarget_push_button.setMinimumHeight(50)
         
         self.target_group_box = QtGui.QGroupBox("Target Objects")
         self.target_get_scene_push_button = QtGui.QPushButton("Load Selected")
@@ -76,6 +77,7 @@ class mcr_ui(QtGui.QWidget):
         
         main_layout.addLayout(path_layout)
         main_layout.addLayout(group_layout)
+        
         main_layout.addWidget(self.match_retarget_push_button)
         
         main_layout.addStretch()
