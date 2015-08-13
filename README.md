@@ -1,7 +1,7 @@
 # mocap_retargeting_toolset
 Autodesk Maya Mocap Retargeting python toolset for riggers and animators.
 
-![Alt text](http://s4.postimg.org/qf6otcicd/Screen_Shot_2015_08_13_at_10_12_42_AM.png "Screenshot_00")
+![Alt text](http://s4.postimg.org/6fa3byusd/Screen_Shot_2015_08_13_at_2_15_33_PM.png "Screenshot_00")
 
 # Features:
   1- Parse mocap files and load into the tool screen as well as the scene
